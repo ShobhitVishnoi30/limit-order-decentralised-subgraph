@@ -1,0 +1,38 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DEXLimitOrder
+    network: goerli
+    source:
+      address: "0xa932B871a7e8f9a8c71f1bCf7124E317cC1088C2"
+      abi: DEXLimitOrder
+      startBlock: 7595179
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - LimitOrderPlaced
+        - LimitOrderExecuted
+        - LimitOrderCancelled
+      abis:
+        - name: DEXLimitOrder
+          file: ./abis/DEXLimitOrder.json
+        - name: Token
+          file: ./abis/Token.json
+        - name: Pair
+          file: ./abis/Pair.json
+        - name: Router
+          file: ./abis/Router.json
+        - name: Factory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: LimitOrderPlaced(uint256,uint256,address,address,address,bool,uint256,uint256,uint8)
+          handler: handleLimitOrderPlaced
+        - event: LimitOrderExecuted(uint256)
+          handler: handleLimitOrderExecution
+        - event: LimitOrderCancelled(uint256)
+          handler: handleLimitOrderCancellation
+      file: ./src/dexLimitOrder-event.ts

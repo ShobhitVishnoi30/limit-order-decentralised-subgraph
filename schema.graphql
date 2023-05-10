@@ -1,0 +1,37 @@
+type LimitOrder @entity {
+  "Limit Order Id"
+  id: String!
+
+  "User Address"
+  userAddress: Bytes!
+
+  "Transaction Hash"
+  transactionHash: Bytes!
+
+  "Input Token Address"
+  inputTokenAddress: Bytes!
+
+  "Input Token Amount"
+  inputTokenAmount: BigDecimal!
+
+  "Output Token Address"
+  outputTokenAddress: Bytes!
+
+  "Output Token Amount"
+  outputTokenAmount: BigDecimal!
+
+  "True if input is fixed otherwise false for fixed output token"
+  inBoundToken: Boolean!
+
+  "Price"
+  price: BigDecimal!
+
+  "Limit Order Type"
+  limitOrderType: Int!
+
+  "Status Of The Limit Order 0-Available , 1 - Executed , 2-cancelled"
+  status: Int!
+
+  "Expiration timestamp"
+  timestamp: BigInt!
+}
